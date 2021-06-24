@@ -1,0 +1,18 @@
+{
+    "name": "wazirxPortfolio",
+    "version": "1.0",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": ["https://wazirx.com/exchange/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_title": "Wazirx Portfolio Manager"
+    },
+    "permissions": [
+        "tabs"
+    ]
+}
