@@ -9,6 +9,7 @@
 //const matches = document.documentElement.innerHTML.match(re);
 var portfolio = {}
 var currentPrice = {}
+var profitLoss = []
 
 function populatePortfolio() {
     let buyElements = document.querySelectorAll(".sc-bdVaJa.sc-iuJeZd.eVNcjS");
@@ -54,12 +55,33 @@ function populatePortfolio() {
 
 function populateCurrentPrice() {
     var priceItems = document.querySelectorAll(".sc-iELTvK.bZNgpE .ticker-item");
+    priceItems.forEach(data => {
+        var coin = data.querySelector(".market-name-text").innerHTML.split("<")[0];
+        var price = Number(data.querySelector(".price-text.ticker-price").innerHTML.slice(1).split(",").join(""))
+        currentPrice[coin] = price;
+    })
+    console.log(currentPrice)
+}
 
+function populateProfitLoss() {
+    for (var coin of Object.keys(portfolio)) {
+        var item = {};
+        item.qty = portfolio[coin].amount;
+        item.avg = Number((portfolio[coin].price)/(portfolio[coin].amount));
+        item.coin = coin;
+        item.invested = portfolio[coin].price;
+        item.pnl = (currentPrice[coin])*(portfolio[coin].amount) - portfolio[coin].price;  
+        item.pnlperc = (item.pnl*100)/(item.invested);         
+        item.curr = currentPrice[coin];
+        profitLoss.push(item);
+    }
+    console.log(profitLoss)
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
+  profitLoss = []
   const price = document.getElementsByClassName("price-text")[0].innerHTML;
   document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
 
@@ -73,6 +95,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     });
 
     populatePortfolio();
+    populateCurrentPrice();
+    populateProfitLoss();
 
     document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
   },500);
