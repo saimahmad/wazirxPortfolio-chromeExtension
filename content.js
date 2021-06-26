@@ -9,7 +9,7 @@
 //const matches = document.documentElement.innerHTML.match(re);
 var portfolio = {}
 var currentPrice = {}
-var profitLoss = []
+var profitLoss = {}
 
 function populatePortfolio() {
     let buyElements = document.querySelectorAll(".sc-bdVaJa.sc-iuJeZd.eVNcjS");
@@ -64,6 +64,11 @@ function populateCurrentPrice() {
 }
 
 function populateProfitLoss() {
+    profitLoss.list = [];
+    profitLoss.total = 0;
+    profitLoss.curr = 0;
+    profitLoss.pnl = 0;
+
     for (var coin of Object.keys(portfolio)) {
         var item = {};
         item.qty = portfolio[coin].amount;
@@ -73,15 +78,20 @@ function populateProfitLoss() {
         item.pnl = (currentPrice[coin])*(portfolio[coin].amount) - portfolio[coin].price;  
         item.pnlperc = (item.pnl*100)/(item.invested);         
         item.curr = currentPrice[coin];
-        profitLoss.push(item);
+
+        profitLoss.total += item.invested;
+        profitLoss.pnl += item.pnl;
+        profitLoss.curr += item.invested + item.pnl;
+        profitLoss.list.push(item);
     }
+    profitLoss.pnlperc = (profitLoss.pnl*100)/profitLoss.total;
     console.log(profitLoss)
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
-  profitLoss = []
+  profitLoss = {}
   const price = document.getElementsByClassName("price-text")[0].innerHTML;
   document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
 
