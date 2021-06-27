@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-
-    </head>
-    <body>
-        <!-- <div id="price"></div>
-        <div id="tabCheck"></div> -->
-        <div id="portfolio"></div>
-        <button>Refresh</button>
-        <script src="index.js"></script>
-    </body>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="header">
+        <div class="space-between separator-bottom pb-5 mb-5">
+            <div class="column">
+                <span class="grey-text medium-text mb-5">Invested</span>
+                <span class="large-text" id="total"></span>
+            </div>
+            <div class="column">
+                <span class="grey-text medium-text mb-5">Current</span>
+                <span class="large-text" id="curr"></span>
+            </div>
+        </div>
+        <div class="space-between">
+            <span class="large-text grey-text">P&L</span>
+            <div class="row">
+                <span class="large-text" id="pnl"></span>
+            </div>
+        </div>
+    </div>
+    <div id="portfolio"></div>
+    <div class="footer">
+        <button class="refresh">Refresh</button>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>

@@ -99,14 +99,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const tabCheck =
       document.querySelector(".sc-bwzfXH.bKFhPM>.underline").innerHTML;
     //console.log(tabCheck);
-    sendResponse({
-      price: price,
-      tabCheck: tabCheck,
-    });
 
     populatePortfolio();
     populateCurrentPrice();
     populateProfitLoss();
+
+    sendResponse({
+        portfolio: profitLoss
+      });
 
     document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
   },500);
