@@ -50,7 +50,7 @@ function populatePortfolio() {
         }
         //console.log(coin +" "+ amount + " "+ price.split(",").join(""))
     })
-    console.log(portfolio)
+    //console.log(portfolio)
 }
 
 function populateCurrentPrice() {
@@ -60,7 +60,7 @@ function populateCurrentPrice() {
         var price = Number(data.querySelector(".price-text.ticker-price").innerHTML.slice(1).split(",").join(""))
         currentPrice[coin] = price;
     })
-    console.log(currentPrice)
+   // console.log(currentPrice)
 }
 
 function populateProfitLoss() {
