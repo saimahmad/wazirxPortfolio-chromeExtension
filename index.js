@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded',() => {
     function populateHeader(portfolio) {
         id("total").innerHTML = amountFormat(portfolio.total);
         id("curr").innerHTML = amountFormat(portfolio.curr);
-        id("pnl").innerHTML = amountFormat(portfolio.pnl);
+        id("pnl").innerHTML = portfolio.pnl >0?'+' + amountFormat(portfolio.pnl): amountFormat(portfolio.pnl);
         id("pnl").classList.add(portfolio.pnl <0? "red-text":"green-text");
-        id("pnlperc").innerHTML = amountFormat(portfolio.pnlperc) + ' %';
+        id("pnlperc").innerHTML =portfolio.pnl >0?'+' + amountFormat(portfolio.pnlperc) + ' %': amountFormat(portfolio.pnlperc) + ' %' ;
         id("pnlperc").classList.add(portfolio.pnl <0? "red-text":"green-text");
     }
 
@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded',() => {
         console.log(item)
         let avg = item.avg>1? parseFloat(item.avg).toFixed(2): item.avg
         let pnlClass = item.pnl<0 ? 'red-text': 'green-text';
+        let pnl = item.pnl>0 ? '+' + parseFloat(item.pnl).toFixed(2): parseFloat(item.pnl).toFixed(2);
+        let pnlperc = item.pnl>0 ? '+' + parseFloat(item.pnlperc).toFixed(2): parseFloat(item.pnlperc).toFixed(2);
         return `
             <div class="row space-between mb-10 pb-10 separator-bottom">
                 <div class="column">
@@ -48,8 +50,8 @@ document.addEventListener('DOMContentLoaded',() => {
                     </div>
                 </div>
                 <div class="column end">
-                    <span class="small-text mb-5 ${pnlClass}">${parseFloat(item.pnlperc).toFixed(2)} %</span>
-                    <span class="medium-text mb-5 ${pnlClass}">${parseFloat(item.pnl).toFixed(2)}</span>
+                    <span class="small-text mb-5 ${pnlClass}">${pnlperc} %</span>
+                    <span class="medium-text mb-5 ${pnlClass}">${pnl}</span>
                     <div class="row">
                         <span class="grey-text small-text mr-5">LTP</span>
                         <span class="small-text">${item.curr}</span>
