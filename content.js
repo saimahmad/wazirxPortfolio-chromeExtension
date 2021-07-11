@@ -92,8 +92,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
   profitLoss = {}
-  const price = document.getElementsByClassName("price-text")[0].innerHTML;
+  let tabClickNeeded = document.getElementsByClassName("sc-bdVaJa sc-gqPbQI fmWAlB").length >0;
+  //console.log(tabClickNeeded)
+  if(tabClickNeeded ) {
   document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
+  }
 
   setTimeout(() => {
     const tabCheck =
@@ -108,7 +111,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         portfolio: profitLoss
       });
 
-    document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
+    if(tabClickNeeded) { 
+        document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click(); 
+    }
   },500);
 
   return true;
