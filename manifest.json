@@ -10,7 +10,8 @@
     ],
     "browser_action": {
         "default_popup": "index.html",
-        "default_title": "Wazirx Portfolio Manager"
+        "default_title": "Wazirx Portfolio Manager",
+        "default_icon": "wIcon.png"
     },
     "permissions": [
         "tabs"
