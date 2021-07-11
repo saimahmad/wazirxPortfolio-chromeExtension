@@ -33,23 +33,23 @@ document.addEventListener('DOMContentLoaded',() => {
         let avg = item.avg>1? parseFloat(item.avg).toFixed(2): item.avg
         let pnlClass = item.pnl<0 ? 'red-text': 'green-text';
         return `
-            <div class="row space-between">
+            <div class="row space-between mb-10 pb-10 separator-bottom">
                 <div class="column">
-                    <div class="row">
+                    <div class="row mb-5">
                        <span class="small-text  grey-text mr-5">Qty</span>
                         <span class="small-text mr-10">${item.qty}</span>
                         <span class="small-text grey-text mr-5">Avg</span>
                         <span class="small-text">${avg}</span>
                     </div>
-                    <span class="medium-text">${(item.coin).toUpperCase()}</span>
+                    <span class="medium-text mb-5">${(item.coin).toUpperCase()}</span>
                     <div class="row">
                         <span class="small-text grey-text mr-5">Invested</span>
                         <span class="small-text">${item.invested}</span>
                     </div>
                 </div>
                 <div class="column end">
-                    <span class="small-text ${pnlClass}">${parseFloat(item.pnlperc).toFixed(2)} %</span>
-                    <span class="medium-text ${pnlClass}">${parseFloat(item.pnl).toFixed(2)}</span>
+                    <span class="small-text mb-5 ${pnlClass}">${parseFloat(item.pnlperc).toFixed(2)} %</span>
+                    <span class="medium-text mb-5 ${pnlClass}">${parseFloat(item.pnl).toFixed(2)}</span>
                     <div class="row">
                         <span class="grey-text small-text mr-5">LTP</span>
                         <span class="small-text">${item.curr}</span>

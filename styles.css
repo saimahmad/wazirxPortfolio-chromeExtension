@@ -11,6 +11,12 @@ body {
     padding: 10px
 }
 
+.portfolio {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
 .footer {
     display: flex;
     flex-direction: row;
