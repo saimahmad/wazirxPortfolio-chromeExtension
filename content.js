@@ -98,6 +98,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
   }
 
+  document.querySelector(".sc-bdVaJa.sc-cmTdod.kwUBiG label").click();
+
   setTimeout(() => {
     const tabCheck =
       document.querySelector(".sc-bwzfXH.bKFhPM>.underline").innerHTML;
