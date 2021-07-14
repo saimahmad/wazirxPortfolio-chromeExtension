@@ -1,5 +1,5 @@
 {
-    "name": "wazirxPortfolio",
+    "name": "Wazirx Portfolio",
     "version": "1.0.0",
     "manifest_version": 2,
     "content_scripts": [
@@ -12,8 +12,5 @@
         "default_popup": "index.html",
         "default_title": "Wazirx Portfolio Manager",
         "default_icon": "wIcon.png"
-    },
-    "permissions": [
-        "tabs"
-    ]
+    }
 }
