@@ -12,13 +12,13 @@ var currentPrice = {}
 var profitLoss = {}
 
 function populatePortfolio() {
-    let buyElements = document.querySelectorAll(".sc-bdVaJa.sc-iuJeZd.eVNcjS");
-    let sellElements = document.querySelectorAll(".sc-bdVaJa.sc-iuJeZd.blXZKS");
+    let buyElements = document.querySelectorAll(".sc-bdVaJa.sc-hORach.iufTWR");
+    let sellElements = document.querySelectorAll(".sc-bdVaJa.sc-hORach.fPTluh");
 
     buyElements.forEach(data => {
         var coin = data.querySelector(".cur-ptr.sc-bwzfXH.foOypC .underline").innerHTML;
         var amount = Number(data.querySelector(".sc-bwzfXH.bKFhPM .underline").innerHTML.split(",").join(""))
-        var price = Number(data.querySelector(".sc-bdVaJa.sc-esOvli.iLUXV .sc-bwzfXH.bKFhPM").innerHTML.split(",").join(""))
+        var price = Number(data.querySelector(".sc-bdVaJa.sc-bMVAic.dUAMnv .sc-bwzfXH.bKFhPM").innerHTML.split(",").join(""))
 
         if(portfolio[coin]) {
             portfolio[coin].amount += amount;
@@ -37,7 +37,7 @@ function populatePortfolio() {
     sellElements.forEach(data => {
         var coin = data.querySelector(".cur-ptr.sc-bwzfXH.foOypC .underline").innerHTML;
         var amount = Number(data.querySelector(".sc-bwzfXH.bKFhPM .underline").innerHTML.split(",").join(""))
-        var price = Number(data.querySelector(".sc-bdVaJa.sc-esOvli.iLUXV .sc-bwzfXH.bKFhPM").innerHTML.split(",").join(""))
+        var price = Number(data.querySelector(".sc-bdVaJa.sc-bMVAic.dUAMnv .sc-bwzfXH.bKFhPM").innerHTML.split(",").join(""))
 
         if(portfolio[coin]) {
             portfolio[coin].amount -= amount;
@@ -50,17 +50,17 @@ function populatePortfolio() {
         }
         //console.log(coin +" "+ amount + " "+ price.split(",").join(""))
     })
-    //console.log(portfolio)
+    console.log(portfolio)
 }
 
 function populateCurrentPrice() {
-    var priceItems = document.querySelectorAll(".sc-iELTvK.bZNgpE .ticker-item");
+    var priceItems = document.querySelectorAll(".sc-elJkPf.kdmPPp .ticker-item");
     priceItems.forEach(data => {
         var coin = data.querySelector(".market-name-text").innerHTML.split("<")[0];
         var price = Number(data.querySelector(".price-text.ticker-price").innerHTML.slice(1).split(",").join(""))
         currentPrice[coin] = price;
     })
-   // console.log(currentPrice)
+    console.log(currentPrice)
 }
 
 function populateProfitLoss() {
@@ -92,17 +92,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
   profitLoss = {}
-  let tabClickNeeded = document.getElementsByClassName("sc-bdVaJa sc-gqPbQI fmWAlB").length >0;
+  //let tabClickNeeded = document.getElementsByClassName("sc-bdVaJa sc-gqPbQI fmWAlB").length >0;
   //console.log(tabClickNeeded)
   if(tabClickNeeded ) {
-  document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click();
+  document.getElementsByClassName("sc-bdVaJa sc-exAgwC iIHUOd")[0].click();
   }
 
-  document.querySelector(".sc-bdVaJa.sc-cmTdod.kwUBiG label").click();
+  document.querySelector(".sc-bdVaJa.sc-jtRfpW.bJeouM label").click();
 
   setTimeout(() => {
-    const tabCheck =
-      document.querySelector(".sc-bwzfXH.bKFhPM>.underline").innerHTML;
+    // const tabCheck =
+    //   document.querySelector(".sc-bwzfXH.bKFhPM>.underline").innerHTML;
     //console.log(tabCheck);
 
     populatePortfolio();
