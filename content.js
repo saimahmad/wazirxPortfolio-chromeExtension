@@ -92,11 +92,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
   profitLoss = {}
-  //let tabClickNeeded = document.getElementsByClassName("sc-bdVaJa sc-gqPbQI fmWAlB").length >0;
-  //console.log(tabClickNeeded)
-  if(tabClickNeeded ) {
-  document.getElementsByClassName("sc-bdVaJa sc-exAgwC iIHUOd")[0].click();
-  }
+//   let tabClickNeeded = document.getElementsByClassName("sc-bdVaJa sc-exAgwC iIHUOd").length >0;
+//   console.log(tabClickNeeded)
+//   if(tabClickNeeded ) {
+//   document.getElementsByClassName("sc-bdVaJa sc-exAgwC iIHUOd")[0].click();
+//   }
 
   document.querySelector(".sc-bdVaJa.sc-jtRfpW.bJeouM label").click();
 
@@ -113,9 +113,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         portfolio: profitLoss
       });
 
-    if(tabClickNeeded) { 
-        document.getElementsByClassName("sc-gojNiO jCLtlH")[0].click(); 
-    }
+    // if(tabClickNeeded) { 
+    //     document.getElementsByClassName("sc-krvtoX flKLqN")[0].click(); 
+    // }
   },500);
 
   return true;
