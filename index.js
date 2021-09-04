@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded',() => {
         let pnlClass = item.pnl<0 ? 'red-text': 'green-text';
         let pnl = item.pnl>0 ? '+' + parseFloat(item.pnl).toFixed(2): parseFloat(item.pnl).toFixed(2);
         let pnlperc = item.pnl>0 ? '+' + parseFloat(item.pnlperc).toFixed(2): parseFloat(item.pnlperc).toFixed(2);
+        let invested = item.invested>1? parseFloat(item.invested).toFixed(2): item.invested;
         return `
             <div class="row space-between mb-10 pb-10 separator-bottom">
                 <div class="column">
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded',() => {
                     <span class="medium-text mb-5">${(item.coin).toUpperCase()}</span>
                     <div class="row">
                         <span class="small-text grey-text mr-5">Invested</span>
-                        <span class="small-text">${item.invested}</span>
+                        <span class="small-text">${invested}</span>
                     </div>
                 </div>
                 <div class="column end">

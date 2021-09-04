@@ -12,14 +12,16 @@ var currentPrice = {}
 var profitLoss = {}
 
 function populatePortfolio() {
-    let buyElements = document.querySelectorAll(".sc-bdVaJa.sc-hORach.iufTWR");
-    let sellElements = document.querySelectorAll(".sc-bdVaJa.sc-hORach.fPTluh");
+    let elements = document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[1].querySelectorAll(":scope>div>div>div")[2].querySelectorAll(":scope>div>div>div");
+    //delete
+    //elements.forEach(data =>console.log(getComputedStyle(data,':after').background.split(')')[0]))
+    let buyElements = Array.from(elements).filter(data => getComputedStyle(data,':after').background.split(')')[0] == "rgba(35, 172, 80, 0.1");
+    let sellElements = Array.from(elements).filter(data => getComputedStyle(data,':after').background.split(')')[0] == "rgba(241, 67, 47, 0.1");
 
     buyElements.forEach(data => {
-        var coin = data.querySelector(".cur-ptr.sc-bwzfXH.foOypC .underline").innerHTML;
-        var amount = Number(data.querySelector(".sc-bwzfXH.bKFhPM .underline").innerHTML.split(",").join(""))
-        var price = Number(data.querySelector(".sc-bdVaJa.sc-bMVAic.dUAMnv .sc-bwzfXH.bKFhPM").innerHTML.split(",").join(""))
-
+        var coin = data.querySelectorAll(".underline")[0].innerHTML;
+        var amount = Number(data.querySelectorAll(".underline")[1].innerHTML.split(",").join(""))
+        var price = Number(data.querySelectorAll(":scope>div>div>span")[3].innerHTML.split(",").join(""))
         if(portfolio[coin]) {
             portfolio[coin].amount += amount;
             portfolio[coin].price += price
@@ -35,9 +37,9 @@ function populatePortfolio() {
     })
 
     sellElements.forEach(data => {
-        var coin = data.querySelector(".cur-ptr.sc-bwzfXH.foOypC .underline").innerHTML;
-        var amount = Number(data.querySelector(".sc-bwzfXH.bKFhPM .underline").innerHTML.split(",").join(""))
-        var price = Number(data.querySelector(".sc-bdVaJa.sc-bMVAic.dUAMnv .sc-bwzfXH.bKFhPM").innerHTML.split(",").join(""))
+        var coin = data.querySelectorAll(".underline")[0].innerHTML;
+        var amount = Number(data.querySelectorAll(".underline")[1].innerHTML.split(",").join(""))
+        var price = Number(data.querySelectorAll(":scope>div>div>span")[3].innerHTML.split(",").join(""))
 
         if(portfolio[coin]) {
             portfolio[coin].amount -= amount;
@@ -54,7 +56,7 @@ function populatePortfolio() {
 }
 
 function populateCurrentPrice() {
-    var priceItems = document.querySelectorAll(".sc-elJkPf.kdmPPp .ticker-item");
+    var priceItems = document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div>div")[1].querySelectorAll(":scope>a");
     priceItems.forEach(data => {
         var coin = data.querySelector(".market-name-text").innerHTML.split("<")[0];
         var price = Number(data.querySelector(".price-text.ticker-price").innerHTML.slice(1).split(",").join(""))
@@ -92,13 +94,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
   profitLoss = {}
-//   let tabClickNeeded = document.getElementsByClassName("sc-bdVaJa sc-exAgwC iIHUOd").length >0;
-//   console.log(tabClickNeeded)
-//   if(tabClickNeeded ) {
-//   document.getElementsByClassName("sc-bdVaJa sc-exAgwC iIHUOd")[0].click();
-//   }
+  let tab = document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div")
+  let tabClickNeeded = tab[0].classList.contains("selected")
+  console.log(tabClickNeeded)
+  if(tabClickNeeded ) {
+  tab[1].click();
+  }
 
-  document.querySelector(".sc-bdVaJa.sc-jtRfpW.bJeouM label").click();
+  //selecting inr currency tab
+  document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div>div")[0].querySelectorAll(":scope>div")[0].querySelector("label").click()
 
   setTimeout(() => {
     // const tabCheck =
