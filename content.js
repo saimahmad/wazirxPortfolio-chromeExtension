@@ -12,7 +12,7 @@ var currentPrice = {}
 var profitLoss = {}
 
 function populatePortfolio() {
-    let elements = document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[1].querySelectorAll(":scope>div>div>div")[2].querySelectorAll(":scope>div>div>div");
+    let elements = document.querySelectorAll("body>div>div>div")[document.querySelectorAll("body>div>div>div").length -1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[1].querySelectorAll(":scope>div>div>div")[2].querySelectorAll(":scope>div>div>div");
     //delete
     //elements.forEach(data =>console.log(getComputedStyle(data,':after').background.split(')')[0]))
     let buyElements = Array.from(elements).filter(data => getComputedStyle(data,':after').background.split(')')[0] == "rgba(35, 172, 80, 0.1");
@@ -56,7 +56,7 @@ function populatePortfolio() {
 }
 
 function populateCurrentPrice() {
-    var priceItems = document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div>div")[1].querySelectorAll(":scope>a");
+    var priceItems = document.querySelectorAll("body>div>div>div")[document.querySelectorAll("body>div>div>div").length -1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div>div")[1].querySelectorAll(":scope>a");
     priceItems.forEach(data => {
         var coin = data.querySelector(".market-name-text").innerHTML.split("<")[0];
         var price = Number(data.querySelector(".price-text.ticker-price").innerHTML.slice(1).split(",").join(""))
@@ -94,7 +94,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     portfolio = {}
   currentPrice = {}
   profitLoss = {}
-  let tab = document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div")
+  let tab;
+tab = document.querySelectorAll("body>div>div>div")[document.querySelectorAll("body>div>div>div").length -1].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[2].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div")
   let tabClickNeeded = tab[0].classList.contains("selected")
   console.log(tabClickNeeded)
   if(tabClickNeeded ) {
@@ -102,7 +103,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   //selecting inr currency tab
-  document.querySelectorAll("body>div>div>div")[1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div>div")[0].querySelectorAll(":scope>div")[0].querySelector("label").click()
+  document.querySelectorAll("body>div>div>div")[document.querySelectorAll("body>div>div>div").length -1].querySelectorAll("div")[0].querySelectorAll(":scope>div")[0].querySelectorAll(":scope>div>div")[0].querySelectorAll(":scope>div")[0].querySelector("label").click()
 
   setTimeout(() => {
     // const tabCheck =
